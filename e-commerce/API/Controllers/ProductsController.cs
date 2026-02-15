@@ -23,7 +23,7 @@ public class ProductsController : ControllerBase
     }
 
     // api/products/1
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> GetProduct(int? id)
     {
         if(id == null)
