@@ -27,14 +27,12 @@ public class ProductsController:ControllerBase
 
         new Product
         {
-             Id=1, 
-             Name="Çikolatalı Pasta", 
-             Description="Bitter", 
-             ImageUrl="1.jpg", 
-             Price=1500, 
-             IsActive=true, 
-             Stock=3 
-            
+             Id=2, 
+             Name="Beyaz Çikolatalı Pasta", 
+             Description="Vanilya", 
+             ImageUrl="2.jpg", 
+             Price=1000, IsActive=true, 
+             Stock=2
         },
             
         });
