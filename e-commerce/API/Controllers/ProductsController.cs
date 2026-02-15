@@ -42,7 +42,7 @@ public class ProductsController:ControllerBase
     }
 
     [HttpGet("{id}")] //api/products/1
-    public IActionResult GetProducts(int id)
+    public IActionResult GetProduct(int id)
     {
         return Ok(new Product {
              Id=1, 
