@@ -31,9 +31,10 @@ public class ProductsController:ControllerBase
              Name="Beyaz Çikolatalı Pasta", 
              Description="Vanilya", 
              ImageUrl="2.jpg", 
-             Price=1000, IsActive=true, 
+             Price=1000, 
+             IsActive=true, 
              Stock=2
-        },
+        }
             
         });
      
@@ -42,7 +43,8 @@ public class ProductsController:ControllerBase
     [HttpGet("{id}")] //api/products/1
     public IActionResult GetProduct(int id)
     {
-        return Ok(new Product {
+        return Ok(new Product 
+        {
              Id=1, 
              Name="Çikolatalı Pasta", 
              Description="Bitter", 
