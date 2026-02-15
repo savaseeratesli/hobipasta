@@ -4,53 +4,52 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers;
 
 [ApiController]
-[Route("/api/[controller]")] //api/products dediklerinde ilgili adrese gider.
-
-public class ProductsController:ControllerBase
+[Route("/api/[controller]")]    // api/products
+public class ProductsController : ControllerBase
 {
-    [HttpGet] //api/products
+
+    [HttpGet]
     public IActionResult GetProducts()
     {
-        return Ok(new List<Product>()
-        {
+        return Ok(new List<Product>() {
             new Product
             {
-             Id=1, 
-             Name="Çikolatalı Pasta", 
-             Description="Bitter", 
-             ImageUrl="1.jpg", 
-             Price=1500, 
-             IsActive=true, 
-             Stock=3 
-            
+				Id = 1, 
+				Name = "Çikolatalı Pasta", 
+				Description = "Bitter", 
+				ImageUrl = "1.jpg", 
+				Price = 1500, 
+				IsActive = true, 
+				Stock = 3 
             },
-
             new Product
             {
-             Id=2, 
-             Name="Beyaz Çikolatalı Pasta", 
-             Description="Vanilya", 
-             ImageUrl="2.jpg", 
-             Price=1000, 
-             IsActive=true, 
-             Stock=2
-            }         
-        });   
+				Id=2, 
+				Name="Beyaz Çikolatalı Pasta", 
+				Description="Vanilya", 
+				ImageUrl="2.jpg", 
+				Price=1000, 
+				IsActive=true, 
+				Stock=2
+            }
+         });
     }
 
-    [HttpGet("{id"}")] //api/products/1
+    // api/products/1
+    [HttpGet("{id}")]
     public IActionResult GetProduct(int id)
     {
-        return Ok(new Product 
-        {
-             Id = id, 
-             Name = "Çikolatalı Pasta", 
-             Description = "Bitter", 
-             ImageUrl = "1.jpg", 
-             Price = 1500, 
-             IsActive = true, 
-             Stock = 3 
+        return Ok(new Product
+        {	
+			Id = 1, 
+            Name = "Çikolatalı Pasta", 
+            Description = "Bitter", 
+            ImageUrl = "1.jpg", 
+            Price = 1500, 
+            IsActive = true, 
+            Stock = 3 
+			
         });
     }
-    
+
 }
