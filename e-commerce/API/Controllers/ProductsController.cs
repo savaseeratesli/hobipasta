@@ -45,7 +45,7 @@ public class ProductsController:ControllerBase
     {
         return Ok(new Product 
         {
-             Id=1, 
+             Id=id, 
              Name="Çikolatalı Pasta", 
              Description="Bitter", 
              ImageUrl="1.jpg", 
