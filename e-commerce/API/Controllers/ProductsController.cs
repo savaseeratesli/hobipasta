@@ -13,8 +13,8 @@ public class ProductsController:ControllerBase
     {
         return Ok(new List<Product>()
         {
-        new Product
-        {
+            new Product
+            {
              Id=1, 
              Name="Çikolatalı Pasta", 
              Description="Bitter", 
@@ -23,10 +23,10 @@ public class ProductsController:ControllerBase
              IsActive=true, 
              Stock=3 
             
-        },
+            },
 
-        new Product
-        {
+            new Product
+            {
              Id=2, 
              Name="Beyaz Çikolatalı Pasta", 
              Description="Vanilya", 
@@ -34,24 +34,22 @@ public class ProductsController:ControllerBase
              Price=1000, 
              IsActive=true, 
              Stock=2
-        }
-            
-        });
-     
+            }         
+        });   
     }
 
-    [HttpGet("{id}")] //api/products/1
+    [HttpGet("{id"}")] //api/products/1
     public IActionResult GetProduct(int id)
     {
         return Ok(new Product 
         {
-             Id=id, 
-             Name="Çikolatalı Pasta", 
-             Description="Bitter", 
-             ImageUrl="1.jpg", 
-             Price=1500, 
-             IsActive=true, 
-             Stock=3 
+             Id = id, 
+             Name = "Çikolatalı Pasta", 
+             Description = "Bitter", 
+             ImageUrl = "1.jpg", 
+             Price = 1500, 
+             IsActive = true, 
+             Stock = 3 
         });
     }
     
