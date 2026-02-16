@@ -7,12 +7,12 @@ interface Props {
 export default function Product({product}: Props) {
   return (
     <>
-    { product.isActive ? (
+    {       
       <div>
-      <h3>{ product.name }</h3>
-      <p> { product.price }</p>
-      </div>
-    ) : <p>ürün satışta değil</p> }    
+        <h3>{ product.name }</h3>
+        <p> { product.price }</p>
+      </div> 
+    }    
     </> 
   );
 }
