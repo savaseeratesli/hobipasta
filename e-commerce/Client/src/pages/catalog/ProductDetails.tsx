@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { IProduct } from "../../model/IProduct";
 
+
+
 export default function ProductDetailsPage(){
 
     const { id } = useParams();
