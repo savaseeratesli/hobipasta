@@ -5,7 +5,7 @@ import HomePage from "../pages/HomePage";
 import ContactPage from "../pages/ContactPage";
 import CatalogPage from "../pages/catalog/CatalogPage";
 import ProductDetailsPage from "../pages/catalog/ProductDetails";
-import ErrorPage from "../pages/catalog/ErrorPage";
+import ErrorPage from "../pages/ErrorPage";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 
