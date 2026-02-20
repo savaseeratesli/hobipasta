@@ -25,6 +25,7 @@ public class CartController : ControllerBase
         return cart;
     }
 
+    //Sepete ürün eklemek için
     [HttpPost]
     public async Task<ActionResult> AddItemToCart(int productId, int quantity)
     {
@@ -43,6 +44,32 @@ public class CartController : ControllerBase
             return CreatedAtAction(nameof(GetCart), cart);
         return BadRequest(new ProblemDetails { Title = "Carta Ürün Eklenemedi."});      
     }
+
+    [HttpDelete]
+    public async Task<ActionResult> DeleteItemFromCart(int productId, int quantity)
+    {
+        var cart = await GetOrCreate();
+
+        cart.DeleteItem(productId, quantity);
+
+        var result = await _context.SaveChangesAsync() > 0;
+
+        if(result) return Ok();
+
+        return BadRequest(new ProblemDetails { Title= "Ürün silinemedi"});
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     private async Task<Cart> GetOrCreate()
     {
