@@ -3,13 +3,11 @@ using API.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace API.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
-
-public class CartController: ControllerBase
+public class CartController : ControllerBase
 {
     private readonly DataContext _context;
     public CartController(DataContext context)
@@ -17,7 +15,6 @@ public class CartController: ControllerBase
         _context = context;
     }
 
-    //endpoint
     [HttpGet]
     public async Task<ActionResult<Cart>> GetCart()
     {
@@ -27,10 +24,8 @@ public class CartController: ControllerBase
                     .Where(i => i.CustomerId == Request.Cookies["customerId"])
                     .FirstOrDefaultAsync();
 
-        if(cart == null) 
-        {
+        if (cart == null)
             return NotFound();
-        }
 
         return cart;
     }
