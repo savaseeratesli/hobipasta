@@ -1,5 +1,6 @@
 using API.Data;
 using API.Entity;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,18 +16,65 @@ public class CartController : ControllerBase
         _context = context;
     }
 
+    //Sepet bilgisi
     [HttpGet]
     public async Task<ActionResult<Cart>> GetCart()
     {
+        var cart = await GetOrCreate();
+ 
+        return cart;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> AddItemToCart(int productId, int quantity)
+    {
+        var cart = await GetOrCreate();
+
+        var product = await _context.Products.FirstOrDefaultAsync(i=> i.Id == productId);
+
+        if(product == null)
+            return NotFound("Ürün Databasede Bulunamadı.");
+
+        cart.AddItem(product, quantity);
+
+        var result = await _context.SaveChangesAsync() > 0;
+
+        if(result)
+            return CreatedAtAction(nameof(GetCart), cart);
+        return BadRequest(new ProblemDetails { Title = "Carta Ürün Eklenemedi."});      
+    }
+
+    private async Task<Cart> GetOrCreate()
+    {
+        //Veri tabanı sorgusu
         var cart = await _context.Carts
                     .Include(i => i.CartItems)
                     .ThenInclude(i => i.Product)
                     .Where(i => i.CustomerId == Request.Cookies["customerId"])
                     .FirstOrDefaultAsync();
+        
+        if(cart == null)
+        {
+            var customerId = Guid.NewGuid().ToString();
 
-        if (cart == null)
-            return NotFound();
+            var CookieOptions = new CookieOptions
+            {
+                Expires = DateTime.Now.AddMonths(1),
+                IsEssential = true
+                
+            };
+
+            Response.Cookies.Append("customerId", customerId, CookieOptions);
+
+            cart = new Cart { CustomerId = customerId};
+
+            _context.Carts.Add(cart);
+            await _context.SaveChangesAsync();  
+        }
 
         return cart;
+        
     }
+
+
 }
