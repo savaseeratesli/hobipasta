@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router";
 import { useState } from "react";
 import requests from "../../api/requests";
+import { LoadingButton } from "@mui/lab";
 
 interface Props {
     product: IProduct
@@ -35,10 +36,18 @@ export default function Product({product}: Props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button 
+        {/*<Button 
           variant="outlined" size="small" startIcon={<AddShoppingCart/>} color="success"
           onClick={() => handleAddItem(product.id)}>Add to cart
-        </Button>
+        </Button>*/}
+        <LoadingButton
+          variant="outlined"
+          size="small"
+          loadingPosition="start"
+          startIcon={<AddShoppingCart/>}      
+          loading={loading} 
+          onClick={() => handleAddItem(product.id)}>Sepete Ekle      
+        </LoadingButton>
         <Button component={Link} to={`/catalog/${product.id}`} variant="outlined" size="small" startIcon={<SearchIcon />} color="primary">View</Button>
       </CardActions>
      </Card>
