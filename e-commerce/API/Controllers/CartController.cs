@@ -53,7 +53,8 @@ public class CartController : ControllerBase
 
         var result = await _context.SaveChangesAsync() > 0;
 
-        if(result) return Ok();
+        if(result) 
+            return CreatedAtAction(nameof(GetCart), CartToDTO(cart));
 
         return BadRequest(new ProblemDetails { Title= "Ürün silinemedi"});
         
