@@ -8,6 +8,7 @@ import requests from "../../api/requests";
 import { LoadingButton } from "@mui/lab";
 import { useCartContext } from "../../context/CartContext";
 import { toast } from "react-toastify";
+import { currencyTRY } from "../../utils/formatCurrency";
 
 interface Props {
     product: IProduct
@@ -40,7 +41,7 @@ export default function Product({product}: Props) {
           {product.name}
         </Typography>
         <Typography variant="body2" color="secondary">
-          { (product.price / 100).toFixed(2) } ₺
+          { currencyTRY.format(product.price)} 
         </Typography>
       </CardContent>
       <CardActions>
