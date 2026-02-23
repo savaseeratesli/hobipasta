@@ -4,6 +4,7 @@ import { useCartContext } from "../../context/CartContext";
 import { LoadingButton } from "@mui/lab";
 import { useState } from "react";
 import requests from "../../api/requests";
+import { toast } from "react-toastify";
 
 export default function ShoppingCartPage()
 {
@@ -61,13 +62,19 @@ export default function ShoppingCartPage()
                 <TableCell align="right">
                   <LoadingButton 
                     loading={status.loading && status.id === "add" + item.productId} 
-                    onClick={() => handleAddItem(item.productId, "add" + item.productId)}>
+                    onClick={() => {
+                      handleAddItem(item.productId, "add" + item.productId);
+                      toast.success("Ürün Sepete Eklendi");
+                      }}>
                     <AddCircleOutline />
                   </LoadingButton>
                   {item.quantity}
                   <LoadingButton 
                     loading={status.loading && status.id === "del" + item.productId} 
-                    onClick={() => handleDeleteItem(item.productId, "del" + item.productId)}>
+                    onClick={() => {
+                      handleDeleteItem(item.productId, "del" + item.productId)
+                      toast.error("Ürün Adeti Azaltıldı")
+                      }}>
                     <RemoveCircleOutline />
                   </LoadingButton>
                   </TableCell>
@@ -75,7 +82,10 @@ export default function ShoppingCartPage()
                 <TableCell align="right">
                     <LoadingButton color="error" 
                       loading={status.loading && status.id === "del_all" + item.productId} 
-                      onClick={() => handleDeleteItem(item.productId, "del_all" + item.productId, item.quantity)}>
+                      onClick={() => {
+                        handleDeleteItem(item.productId, "del_all" + item.productId, item.quantity);
+                        toast.error("ürün Sepetten Çıkarıldı.")
+                        }}>
                         <Delete />
                     </LoadingButton>
                 </TableCell>
