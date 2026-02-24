@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispact, RootState } from "../../store/store";
 
 export interface CounterState {
     value: number
@@ -21,10 +23,13 @@ export const counterSlice = createSlice({
         },
 
         incrementByAmount: (state, action: PayloadAction<number>) => {
-            state.value -= action.payload;
+            state.value += action.payload;
         }      
     }
 })
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions; //dışarı açtık store içinden set etcez
 
+//HOOK tanımı bağlantı kolaylığı için
+export const useAppDispatch = useDispatch.withTypes<AppDispact>();
+export const useAppSelector = useSelector.withTypes<RootState>();
