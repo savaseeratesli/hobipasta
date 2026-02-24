@@ -6,9 +6,10 @@ import { Link } from "react-router";
 import { useState } from "react";
 import requests from "../../api/requests";
 import { LoadingButton } from "@mui/lab";
-import { useCartContext } from "../../context/CartContext";
 import { toast } from "react-toastify";
 import { currencyTRY } from "../../utils/formatCurrency";
+import { useAppDispatch } from "../../hooks/hooks";
+import { setCart } from "../cart/cartSlice";
 
 interface Props {
     product: IProduct
@@ -18,7 +19,7 @@ export default function Product({product}: Props) {
 
   const [loading, setLoading] = useState(false);
 
-  const { setCart } = useCartContext();
+  const dispacth = useAppDispatch();
 
   function handleAddItem(productId: number)
   {
@@ -26,7 +27,7 @@ export default function Product({product}: Props) {
 
     requests.Cart.addItem(productId)
       .then(cart => {
-                      setCart(cart);
+                      dispacth(setCart(cart));
                       toast.success("Sepete Eklendi.");
                   })
       .catch(error => console.log(error))

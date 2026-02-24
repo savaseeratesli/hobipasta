@@ -30,6 +30,3 @@ export const counterSlice = createSlice({
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions; //dışarı açtık store içinden set etcez
 
-//HOOK tanımı bağlantı kolaylığı için
-export const useAppDispatch = useDispatch.withTypes<AppDispact>();
-export const useAppSelector = useSelector.withTypes<RootState>();
