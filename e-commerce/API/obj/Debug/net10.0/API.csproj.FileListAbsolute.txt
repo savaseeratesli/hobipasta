@@ -148,3 +148,4 @@ D:\github\hobipasta\hobipasta\e-commerce\API\obj\Debug\net10.0\API.pdb
 D:\github\hobipasta\hobipasta\e-commerce\API\obj\Debug\net10.0\API.genruntimeconfig.cache
 D:\github\hobipasta\hobipasta\e-commerce\API\obj\Debug\net10.0\ref\API.dll
 D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\API.staticwebassets.runtime.json
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
