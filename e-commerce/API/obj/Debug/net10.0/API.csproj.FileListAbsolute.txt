@@ -149,3 +149,11 @@ D:\github\hobipasta\hobipasta\e-commerce\API\obj\Debug\net10.0\API.genruntimecon
 D:\github\hobipasta\hobipasta\e-commerce\API\obj\Debug\net10.0\ref\API.dll
 D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\API.staticwebassets.runtime.json
 D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\github\hobipasta\hobipasta\e-commerce\API\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
