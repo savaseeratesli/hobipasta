@@ -1,6 +1,7 @@
 using API.Data;
 using API.DTO;
 using API.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ public class CartController : ControllerBase
 
     //Sepet bilgisi
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<CartDTO>> GetCart()
     {
         return CartToDTO(await GetOrCreate()); 
