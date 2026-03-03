@@ -1,12 +1,12 @@
 import { LockOutlined } from "@mui/icons-material";
-import { Avatar, Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Container, Paper, TextField, Typography } from "@mui/material";
 import { FieldValues, useForm } from "react-hook-form"
 import requests from "../../api/requests";
-
+import { LoadingButton } from "@mui/lab";
 
 export default function LoginPage()
 {
-    const {register, handleSubmit } = useForm({
+    const { register, handleSubmit, formState: {errors, isSubmitting, isValid} } = useForm({
         defaultValues: {
             username: "",
             password: ""
@@ -17,6 +17,7 @@ export default function LoginPage()
         await requests.Account.login(data);
     }
 
+    
     return (
         <Container maxWidth="xs">
             <Paper sx={{marginTop: 8, padding: 2}} elevation={3}>
@@ -26,21 +27,34 @@ export default function LoginPage()
                 <Typography component="h1" variant="h5" sx={{textAlign: "center"}}>Login</Typography>
                 <Box component="form" onSubmit={handleSubmit(submitForm)} noValidate sx={{mt: 2}}>
                     <TextField 
-                        {...register("username")}                    
+                        {...register("username", {required: "zorunlu alan"})}  //required, boş değer girilmesin diye                  
                         label="Enter username" 
                         fullWidth required autoFocus 
                         sx={{mb: 2}} 
-                        size="small"></TextField>
+                        size="small"
+                        error={!!errors.username}
+                        helperText={errors.username?.message}></TextField> 
+                   
 
                     <TextField 
-                        {...register("password")}
+                        {...register("password", {required: "zorunlu alan", minLength: {
+                            value: 6,
+                            message: "Şifre en az 6 karakter olmalıdır."
+                        }})}
                         label="Enter password" 
                         type="password" 
                         fullWidth required 
                         sx={{mb: 2}} 
-                        size="small"></TextField>
-
-                    <Button type="submit" variant="contained" fullWidth sx={{mt: 1}}>Giriş</Button>
+                        size="small"
+                        error={!!errors.password}
+                        helperText={errors.password?.message}></TextField>
+               
+                    <LoadingButton 
+                        loading={isSubmitting} 
+                        disabled={!isValid} //Giriş koşulları uygun değilsebuton pasif
+                        type="submit" 
+                        variant="contained" 
+                        fullWidth sx={{mt: 1}}>Giriş</LoadingButton>
                 </Box>
             </Paper>
         </Container>
