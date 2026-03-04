@@ -1,6 +1,7 @@
 using API.DTO;
 using API.Entity;
 using API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -66,8 +67,24 @@ public class AccountController : ControllerBase
             return StatusCode(201);
         }
 
-        return BadRequest(result.Errors);
-        
+        return BadRequest(result.Errors);   
     }
-    
+
+    [Authorize] //Yetkilendirme başarılı derse bize cevap döencek
+    [HttpGet("getuser")]
+    public async Task<ActionResult<UserDTO>> GetUser()
+    {
+        var user = await _userManager.FindByNameAsync(User.Identity?.Name!);
+
+        if(user == null)
+        {
+            return BadRequest(new ProblemDetails {Title = "Kullanıcı Hatası"});
+        }
+
+        return new UserDTO 
+        { 
+            Name = user.Name!,
+            Token = await _tokenService.GenerateToken(user) 
+        };
+    } 
 }
