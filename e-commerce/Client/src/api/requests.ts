@@ -1,9 +1,17 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
+import { store } from "../store/store";
 
 axios.defaults.baseURL = "http://localhost:5047/api/";
 axios.defaults.withCredentials = true;
+
+axios.interceptors.request.use(request => {
+    const token = store.getState().account.user?.token;
+    if(token)
+        request.headers.Authorization = `Bearer ${token}`;
+    return request;
+})
 
 axios.interceptors.response.use(response => {
     return response;
@@ -71,7 +79,6 @@ const Account = {
     getUser: () => queries.get("account/getuser")
 }
 
-//dışarıya export etmek için
 const requests = {
     Catalog, Errors, Cart, Account
 }
