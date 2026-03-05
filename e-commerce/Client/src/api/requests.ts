@@ -1,9 +1,18 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
+import { store } from "../store/store";
 
 axios.defaults.baseURL = "http://localhost:5047/api/";
 axios.defaults.withCredentials = true;
+
+//Ben araya kendi kodlarımı koyucam anlamı
+axios.interceptors.request.use(request => {
+    const token = store.getState().account.user?.token;//user boş değilse
+    if(token)
+        request.headers.Authorization = `Bearer ${token}`;
+    return request;//kestiğimiz sürecin kaldığı yerden devam etmesi lazım
+})
 
 axios.interceptors.response.use(response => {
     return response;

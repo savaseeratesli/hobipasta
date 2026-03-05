@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Header from "./Header";
 import { CircularProgress, Container, CssBaseline } from "@mui/material";
 import { Outlet } from "react-router";
 import { ToastContainer } from "react-toastify";
@@ -7,7 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import requests from "../api/requests";
 import { useAppDispatch } from "../hooks/hooks";
 import { setCart } from "../features/cart/cartSlice";
-import { setUser } from "../features/account/accountSlice";
+import { logout, setUser } from "../features/account/accountSlice";
+import Header from "./Header";
 
 function App() { 
 
@@ -23,7 +23,10 @@ function App() {
         dispatch(setUser(user)); 
         localStorage.setItem("user", JSON.stringify(user)); //hem redux yenilendi hemde localstorge yenielendi.servis tarafına token iletilmeli.
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        dispatch(logout());
+      });
     
     //uygulama yenilendiği anda kart bilgsi burdan geliyor
     requests.Cart.get()
