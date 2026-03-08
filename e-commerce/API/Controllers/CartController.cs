@@ -23,14 +23,14 @@ public class CartController : ControllerBase
     [Authorize]
     public async Task<ActionResult<CartDTO>> GetCart()
     {
-        return CartToDTO(await GetOrCreate()); 
+        return CartToDTO(await GetOrCreate(GetCustomerId())); 
     }
 
     //Sepete ürün eklemek için
     [HttpPost]
     public async Task<ActionResult> AddItemToCart(int productId, int quantity)
     {
-        var cart = await GetOrCreate();
+        var cart = await GetOrCreate(GetCustomerId());
 
         var product = await _context.Products.FirstOrDefaultAsync(i=> i.Id == productId);
 
@@ -49,7 +49,7 @@ public class CartController : ControllerBase
     [HttpDelete]
     public async Task<ActionResult> DeleteItemFromCart(int productId, int quantity)
     {
-        var cart = await GetOrCreate();
+        var cart = await GetOrCreate(GetCustomerId());
 
         cart.DeleteItem(productId, quantity);
 
@@ -61,27 +61,37 @@ public class CartController : ControllerBase
         return BadRequest(new ProblemDetails { Title= "Ürün silinemedi"});
         
     }
-    private async Task<Cart> GetOrCreate()
+
+    private string GetCustomerId()
+    {
+        return User.Identity?.Name ?? Request.Cookies["customerId"]!; //soru işareketl değeler null ise 
+        
+    }
+    private async Task<Cart> GetOrCreate(string custId)
     {
         //Veri tabanı sorgusu
         var cart = await _context.Carts
                     .Include(i => i.CartItems)
                     .ThenInclude(i => i.Product)
-                    .Where(i => i.CustomerId == Request.Cookies["customerId"])
+                    .Where(i => i.CustomerId == custId)
                     .FirstOrDefaultAsync();
         
         if(cart == null)
         {
-            var customerId = Guid.NewGuid().ToString();
+            var customerId = User.Identity?.Name;
 
-            var CookieOptions = new CookieOptions
+            if(string.IsNullOrEmpty(customerId))
             {
+                customerId = Guid.NewGuid().ToString();
+                
+                var CookieOptions = new CookieOptions
+                {
                 Expires = DateTime.Now.AddMonths(1),
                 IsEssential = true
                 
-            };
-
-            Response.Cookies.Append("customerId", customerId, CookieOptions);
+                };
+                Response.Cookies.Append("customerId", customerId, CookieOptions);
+            }
 
             cart = new Cart { CustomerId = customerId};
 

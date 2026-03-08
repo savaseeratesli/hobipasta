@@ -18,7 +18,7 @@ function App() {
     //getCart
     
     //getUser
-   
+    //Buradaki sıralama önemli.
     //uygulama yenilendiği anda user bilgsi burdan geliyor
     await dispatch(getUser());
     //uygulama yenilendiği anda kart bilgsi burdan geliyor
