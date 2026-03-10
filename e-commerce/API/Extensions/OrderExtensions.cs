@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTO;
 using API.Entity;
 
 namespace API.Extensions
@@ -19,7 +20,7 @@ namespace API.Extensions
                                Phone = i.Phone,
                                 AddresLine = i.AddresLine,
                                  City = i.City,
-                                  DeliveryFree = i.DeliveryFree,
+                                  DeliveryFee = i.DeliveryFree,
                                   SubTotal = i.SubTotal,
                                   OrderDate = i.OrderDate,
                                    OrderStatus = i.OrderStatus,

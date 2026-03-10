@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Entity;
 
-namespace API.Entity
+namespace API.DTO
 {
     public class OrderDTO
     {
@@ -18,14 +19,13 @@ namespace API.Entity
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
         public List<OrderItemDTO> OrderItems { get; set; } = new(); //order ile orderıtem tablosu ilişkilendirdim.
         public decimal SubTotal { get; set; }
-        public decimal DeliveryFree { get; set; }
+        public decimal DeliveryFee { get; set; }
 
         
     }
     public class OrderItemDTO
     {
         public int Id { get; set; }
-        public int OrderId { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; } = null!;
         public string ProductImage { get; set; } = null!;
