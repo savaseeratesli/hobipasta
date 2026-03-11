@@ -18,10 +18,10 @@ namespace API.Entity
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
         public List<OrderItem> OrderItems { get; set; } = new(); //order ile orderıtem tablosu ilişkilendirdim.
         public decimal SubTotal { get; set; }
-        public decimal DeliveryFree { get; set; }
+        public decimal DeliveryFee { get; set; }
         public decimal GetTotal()
         {
-            return SubTotal + DeliveryFree;   
+            return SubTotal + DeliveryFee;   
         }
     }
 

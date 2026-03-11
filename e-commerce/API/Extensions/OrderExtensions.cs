@@ -20,7 +20,7 @@ namespace API.Extensions
                                Phone = i.Phone,
                                 AddresLine = i.AddresLine,
                                  City = i.City,
-                                  DeliveryFee = i.DeliveryFree,
+                                  DeliveryFee = i.DeliveryFee,
                                   SubTotal = i.SubTotal,
                                   OrderDate = i.OrderDate,
                                    OrderStatus = i.OrderStatus,
