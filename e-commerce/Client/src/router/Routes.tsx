@@ -11,12 +11,19 @@ import NotFound from "../errors/NotFound";
 import ShoppingCartPage from "../features/cart/ShoppingCartPage";
 import LoginPage from "../features/account/LoginPage";
 import RegisterPage from "../features/account/RegisterPage";
+import CheckOutPage from "../features/checkout/CheckOutPage";
+import AuthGuard from "./AuthGuard";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
         children: [
+            { element: <AuthGuard />, children: 
+                [
+                { path: "checkout", element: <CheckOutPage /> },
+                ]
+            },
             { path: "", element: <HomePage /> },
             { path: "about", element: <AboutPage /> },
             { path: "contact", element: <ContactPage /> },

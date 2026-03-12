@@ -1,10 +1,11 @@
-import { Alert, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Alert, Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { AddCircleOutline, Delete, RemoveCircleOutline } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import CartSummary from "./CartSummary";
 import { currencyTRY } from "../../utils/formatCurrency";
 import { addItemToCart, deleteItemFromCart } from "./cartSlice";
 import { useAppDispatch, useAppSelector } from "../../store/store";
+import { Link } from "react-router";
 
 export default function ShoppingCartPage()
 {
@@ -14,6 +15,7 @@ export default function ShoppingCartPage()
     if(cart?.cartItems.length === 0) return <Alert severity="warning">Sepetinizde ürün yok</Alert>
 
     return (
+      <>
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -69,5 +71,12 @@ export default function ShoppingCartPage()
           </TableBody>
         </Table>
       </TableContainer>
+      <Box display="flex" justifyContent="flex-end" sx={{mt: 3}}>
+        <Button component={Link} to="/checkout" variant="contained" color="primary">Satın Al
+          
+        </Button>
+      </Box>
+      
+      </>
     );
 }
