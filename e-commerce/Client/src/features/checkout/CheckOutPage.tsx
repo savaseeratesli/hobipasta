@@ -5,6 +5,7 @@ import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import { useState } from "react";
 import { ChevronLeftRounded, ChevronRightRounded } from "@mui/icons-material";
+import { FieldValues, FormProvider, useForm } from "react-hook-form";
 
 const steps = ["Teslimat Bilgileri","Ödeme","Sipariş Özeti"];
 
@@ -26,7 +27,10 @@ export default function CheckoutPage()
 {
     const [activeStep, setActiveStep] = useState(0);
 
-    function handleNext() {
+    const methods = useForm();
+
+    function handleNext(data:FieldValues) {
+        console.log(data);
         setActiveStep(activeStep + 1);
     }
 
@@ -35,6 +39,7 @@ export default function CheckoutPage()
     }
 
     return (
+        <FormProvider {...methods}>
         <Paper>
             <Grid container spacing={5}>
                 <Grid size={4} sx={{
@@ -58,10 +63,9 @@ export default function CheckoutPage()
                         {activeStep === steps.length ? (
                             <h2>Siparişiniz Alındı.</h2>
                         ) : (
-                            <>
+                            <form onSubmit={methods.handleSubmit(handleNext)}>
                                 {getStepContent(activeStep)}
                                 <Box>
-
                                     <Box sx={
                                         [
                                             {
@@ -78,15 +82,18 @@ export default function CheckoutPage()
                                                 onClick={handlePrevious}>Geri</Button>
                                         }
 
-                                        <Button startIcon={<ChevronRightRounded />} variant="contained" 
-                                            onClick={handleNext}>İleri</Button>
+                                        <Button 
+                                            type="submit"
+                                            startIcon={<ChevronRightRounded />} 
+                                            variant="contained">İleri</Button>
                                     </Box>
                                 </Box>
-                            </>
+                            </form>
                         )}           
                    </Box>
                 </Grid>
             </Grid>
         </Paper>
+       </FormProvider>
     );
 }
