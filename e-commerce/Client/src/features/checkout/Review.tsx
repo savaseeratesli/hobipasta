@@ -1,4 +1,32 @@
+import { DeliveryDining, Payment } from "@mui/icons-material";
+import { Divider, Stack, Typography } from "@mui/material";
+import { useFormContext } from "react-hook-form";
+
 export default function Review()
 {
-    return <h1>gözden geçir</h1>;
+    const { getValues } = useFormContext();
+    return (
+        <Stack spacing={2} sx={{mb:3}}>
+            <Stack direction="column" divider={<Divider/>} spacing={2} sx={{my:2}}>
+                <div>
+                    <Typography variant="subtitle2" gutterBottom 
+                        sx={{display: "flex", alignItems: "center", mb: 2, color: "text.secondary"}}>
+                        <DeliveryDining color="primary" sx={{mr: 2}}/> Teslimat Bilgileri
+                    </Typography>
+                    <Typography gutterBottom>{getValues("Firstname")} {getValues("Surname")}</Typography>
+                    <Typography gutterBottom>{getValues("Phone")}</Typography>
+                    <Typography gutterBottom>{getValues("AddresLine")} / {getValues("City")}</Typography>         
+                </div>
+                <div>
+                    <Typography variant="subtitle2" gutterBottom 
+                        sx={{display: "flex", alignItems: "center", mb: 2, color: "text.secondary"}}>
+                        <Payment color="primary" sx={{mr: 2}}/>Ödeme Bilgileri
+                    </Typography>
+                    <Typography gutterBottom>{getValues("card_name")}</Typography>
+                    <Typography gutterBottom>{getValues("card_number")}</Typography>
+                    <Typography gutterBottom>{getValues("card_expire_date")}  {getValues("card_cvv")}</Typography> 
+                </div>
+            </Stack>
+        </Stack>
+    );
 }
