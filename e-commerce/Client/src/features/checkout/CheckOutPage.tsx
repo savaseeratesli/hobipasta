@@ -36,13 +36,17 @@ export default function CheckoutPage()
 
     return (
         <Paper>
-            <Grid container sx={{p:4}} spacing={5}>
-                <Grid size={4}>
+            <Grid container spacing={5}>
+                <Grid size={4} sx={{
+                    borderRight: "1px solid",
+                    borderColor: "divider",
+                    p: 3
+                }}>
                     <Info />
                 </Grid>
-                <Grid size={8}>
+                <Grid size={8} sx={{p:3}} >
                    <Box >
-                        <Stepper activeStep={activeStep} sx={{height: 40}}>
+                        <Stepper activeStep={activeStep} sx={{height: 40, mb: 4}}>
                             { steps.map((label) => (
                                 <Step key={label}>
                                     <StepLabel>{label}</StepLabel>
