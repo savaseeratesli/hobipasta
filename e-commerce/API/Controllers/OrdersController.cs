@@ -16,15 +16,15 @@ namespace API.Controllers
     [ApiController]
     [Route("api/[controller]")]
 
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly DataContext _context;
-        public OrderController(DataContext context)
+        public OrdersController(DataContext context)
         {
             _context = context; 
         }
 
-        [HttpGet("GetOrders")]
+        [HttpGet]
         public async Task<ActionResult<List<OrderDTO>>> GetOrder()
         {
             //async olduğu için await
@@ -35,7 +35,7 @@ namespace API.Controllers
                          .ToListAsync();
         }
 
-        [HttpGet("{id}", Name = "GetOrder")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<OrderDTO?>> GetOrder(int id)
         {
             //async olduğu için await
@@ -47,7 +47,7 @@ namespace API.Controllers
         }
 
         //Yeni sipaiş kaydı
-        [HttpPost("CreateOrder")]
+        [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder(CreateOrderDTO orderDTO)
         {
             //gelen cart bilgisine göre şekillenecek
@@ -97,7 +97,7 @@ namespace API.Controllers
             var result = await _context.SaveChangesAsync() > 0;
 
             if(result)
-                return CreatedAtRoute(nameof(GetOrder), new {id=order.Id}, order.Id);
+                return CreatedAtAction(nameof(GetOrder), new {id=order.Id}, order.Id);
             
             return BadRequest(new ProblemDetails { Title = "Sipariş yok." });
 
