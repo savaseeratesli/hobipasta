@@ -32,8 +32,7 @@ export default function ShoppingCartPage()
             {cart?.cartItems.map((item) => (
               <TableRow
                 key={item.productId}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                  <TableCell component="th" scope="row">
                   <img src={`http://localhost:5047/images/${item.imageUrl}`} style={{height: 60}}/>
                 </TableCell>
@@ -55,7 +54,7 @@ export default function ShoppingCartPage()
                     <RemoveCircleOutline />
                   </LoadingButton>
                   </TableCell>
-                <TableCell align="right">{currencyTRY.format(item.price * item.quantity)} ₺</TableCell>
+                <TableCell align="right">{currencyTRY.format(item.price * item.quantity)}</TableCell>
                 <TableCell align="right">
                     <LoadingButton color="error" 
                       loading={status === "pendingDeleteItem" + item.productId + "all"} 
