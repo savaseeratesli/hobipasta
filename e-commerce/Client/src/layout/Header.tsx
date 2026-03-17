@@ -79,7 +79,7 @@ export default function Header() {
   
 
                         <Menu id="user-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-                          <MenuItem>Siparişlerim</MenuItem>
+                          <MenuItem component={Link} to="/orders">Siparişlerim</MenuItem>
                           <MenuItem                         
                             onClick={() => {
                               dispatch(logout())
