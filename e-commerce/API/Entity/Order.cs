@@ -19,6 +19,8 @@ namespace API.Entity
         public List<OrderItem> OrderItems { get; set; } = new(); //order ile orderıtem tablosu ilişkilendirdim.
         public decimal SubTotal { get; set; }
         public decimal DeliveryFee { get; set; }
+        public string? ConversationId { get; set; }
+        public string? BasketId { get; set; }
         public decimal GetTotal()
         {
             return SubTotal + DeliveryFee;   
@@ -37,6 +39,7 @@ namespace API.Entity
         public string ProductImage { get; set; } = null!;
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+
     }
 
     //Enum deniyor buna.

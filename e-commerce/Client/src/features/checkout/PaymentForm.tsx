@@ -9,39 +9,48 @@ export default function PaymentForm()
         <Grid container spacing={3}>
             <Grid size={{xs: 12, md: 6}}>
                     <TextField 
-                        {...register("card_name", {required: "CArt adı zorunlu alan"})}                    
-                        label="Enter card_name" 
+                        {...register("cardname", {required: "CArt adı zorunlu alan"})}                    
+                        label="Enter cardname" 
                         fullWidth autoFocus 
                         sx={{mb: 2}} 
                         size="small"
-                        error={!!errors.card_name}></TextField> 
+                        error={!!errors.cardname}></TextField> 
             </Grid>
             <Grid size={{xs: 12, md: 6}}>
                     <TextField 
-                        {...register("card_number", {required: "card_number zorunlu alan"})}                   
-                        label="Enter card_number" 
+                        {...register("cardnumber", {required: "card_number zorunlu alan"})}                   
+                        label="Enter cardnumber" 
                         fullWidth 
                         sx={{mb: 2}} 
                         size="small"
-                        error={!!errors.card_number}></TextField> 
+                        error={!!errors.cardnumber}></TextField> 
             </Grid>
-            <Grid size={{xs: 12, md: 6}}>
+            <Grid size={{xs: 6, md: 4}}>
                     <TextField 
-                        {...register("card_expire_date", {required: "card_expire_date zorunlu alan"})}                   
-                        label="Enter card_expire_date" 
+                        {...register("cardexpiremonth", {required: "card_number zorunlu alan"})}                   
+                        label="Enter cardexpiremonth" 
                         fullWidth 
                         sx={{mb: 2}} 
                         size="small"
-                        error={!!errors.card_expire_date}></TextField> 
+                        error={!!errors.cardexpiremonth}></TextField> 
             </Grid>
-            <Grid size={{xs: 12, md: 6}}>
+            <Grid size={{xs: 6, md: 4}}>
                     <TextField 
-                        {...register("card_cvv", {required: "card_cvv zorunlu alan"})}                   
-                        label="Enter card_cvv" 
+                        {...register("cardexpireyear", {required: "card_expire_date zorunlu alan"})}                   
+                        label="Enter cardexpireyear" 
                         fullWidth 
                         sx={{mb: 2}} 
                         size="small"
-                        error={!!errors.card_cvv}></TextField> 
+                        error={!!errors.cardexpireyear}></TextField> 
+            </Grid>
+            <Grid size={{xs: 6, md: 4}}>
+                    <TextField 
+                        {...register("cardcvv", {required: "card_cvv zorunlu alan"})}                   
+                        label="Enter cardcvv" 
+                        fullWidth 
+                        sx={{mb: 2}} 
+                        size="small"
+                        error={!!errors.cardcvv}></TextField> 
             </Grid>
         </Grid>
     );
