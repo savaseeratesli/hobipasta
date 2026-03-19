@@ -45,12 +45,12 @@ export default function PaymentForm()
             </Grid>
             <Grid size={{xs: 6, md: 4}}>
                     <TextField 
-                        {...register("cardcvv", {required: "card_cvv zorunlu alan"})}                   
-                        label="Enter cardcvv" 
+                        {...register("cardcvc", {required: "card_cvv zorunlu alan"})}                   
+                        label="Enter cardcvc" 
                         fullWidth 
                         sx={{mb: 2}} 
                         size="small"
-                        error={!!errors.cardcvv}></TextField> 
+                        error={!!errors.cardcvc}></TextField> 
             </Grid>
         </Grid>
     );

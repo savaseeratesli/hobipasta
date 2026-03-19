@@ -100,6 +100,11 @@ namespace API.Controllers
             //Ödeme Yeri
             var PaymentResult = await ProcessPayment(orderDTO, cart);
 
+            if(PaymentResult.Status == "failure")
+            {
+                return BadRequest(new ProblemDetails { Title = PaymentResult.ErrorMessage });
+            }
+
             order.ConversationId = PaymentResult.ConversationId;
             order.BasketId = PaymentResult.BasketId;
 
@@ -131,7 +136,7 @@ namespace API.Controllers
             request.PaidPrice = cart.CalculateTotal().ToString();
             request.Currency = Currency.TRY.ToString();
             request.Installment = 1;
-            request.BasketId = Guid.NewGuid().ToString(); //
+            request.BasketId = cart.CartId.ToString(); //
             request.PaymentChannel = PaymentChannel.WEB.ToString();
             request.PaymentGroup = PaymentGroup.PRODUCT.ToString();
 
